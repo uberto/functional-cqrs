@@ -1,7 +1,6 @@
 package com.gamasoft.functionalcqrs.readModel
 
 
-
 sealed class ReadEntity
 
 //data class ReadOrder(var status: OrderStatus, val phoneNum: String,

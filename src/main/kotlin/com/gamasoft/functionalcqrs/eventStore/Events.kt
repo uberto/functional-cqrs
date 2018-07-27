@@ -8,6 +8,9 @@ sealed class Event(val pk: String) {
     val version = 0
 }
 
+
+data class OrderEvent(val key: String): Event(key)
+
 //sealed class OrderEvent(val key: String): Event(key)
 //data class Started(val phoneNum: String): OrderEvent(phoneNum)
 //

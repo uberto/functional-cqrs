@@ -3,9 +3,6 @@ package com.gamasoft.functionalcqrs.writeModel
 import com.gamasoft.functionalcqrs.eventStore.*
 
 
-data class OrderDetail(val itemId: String, val qty: Int)
-
-
 interface EventComposable<T: Event> {
     fun compose(e: T): EventComposable<T>
 }
