@@ -19,8 +19,7 @@ fun main(args: Array<String>) {
         //etc.
                  ).processAllInSync()
 
-
-        println("Errors: $errors") //TODO fix me
+        println("Errors: $errors")
 
         listOf<Query<*>>(
 //            GetAllOpenOrders,

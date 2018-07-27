@@ -13,8 +13,8 @@ class QueryHandler {
 
     val eventChannel = createActor { e: Event -> processEvent(e) }
 
-    private val items = mutableMapOf<String, ReadItem>()
-    private val orders = mutableMapOf<String, ReadOrder>()
+//    private val items = mutableMapOf<String, ReadItem>()
+//    private val orders = mutableMapOf<String, ReadOrder>()
 
     private fun processEvent(e: Event): ReadEntity? {
 

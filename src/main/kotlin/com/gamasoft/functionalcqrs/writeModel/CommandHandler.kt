@@ -23,9 +23,6 @@ fun failure(errorMsg: ErrorMsg) = Result.Error(errorMsg)
 fun success(resultValue: Event) = Result.Success(resultValue)
 
 
-
-typealias EsScope = ( EventStore) -> CmdResult
-
 data class CommandMsg(val command: Command, val response: CompletableDeferred<CmdResult>) // a command with a result
 
 
@@ -37,7 +34,7 @@ class CommandHandler(val eventStore: EventStore) {
 
     private fun executeCommand(msg: CommandMsg) {
 
-        val res = executeMulti(msg.command)(eventStore)
+        val res = executeMulti(msg.command)
 
         if (res is Result.Success)
             runBlocking { //use launch to store events in parallel slightly out of order
@@ -47,18 +44,18 @@ class CommandHandler(val eventStore: EventStore) {
         msg.response.complete(res)
     }
 
-    private fun executeMulti(c: Command): EsScope {
+    private fun executeMulti(c: Command): CmdResult {
 
         println("Processing ${c}")
 
-//        val cmdResult: EsScope = when (c) {
-////            is StartOrder -> execute(c)
-////            is AddItem -> execute(c)
+//        val cmdResult = when (c) {
+////            is StartOrder -> execute(eventStore, c)
+////            is AddItem -> execute(eventStore, c)
 //            //etc
 //        }
 //        return cmdResult
 
-        return { es -> error("Undefined")}
+        return failure("Undefined")
     }
 
 
@@ -83,12 +80,12 @@ class CommandHandler(val eventStore: EventStore) {
 //    return this.fold(emptyOrder) { o: Order, e: OrderEvent -> o.compose(e)}
 //}
 
-//private fun execute(c: StartOrder): EsScope = {
+//private fun execute(c: StartOrder, eventStore: EventStore): CmdResult {
 //    val order = getEvents<OrderEvent>(c.phoneNum).fold()
 //    if (order == emptyOrder)
-//        Validated.validNel(Started(c.phoneNum))
+//        success(Started(c.phoneNum))
 //    else
-//        Validated.invalidNel("ReadOrder already existing! ${order}")
+//        error("ReadOrder already existing! ${order}")
 //}
 //etc.
 

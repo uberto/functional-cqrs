@@ -26,7 +26,6 @@ class Application {
 
     fun stop() {
         eventStore.saveAllEvents()
-
     }
 
     fun Command.process(): CompletableDeferred<CmdResult> {

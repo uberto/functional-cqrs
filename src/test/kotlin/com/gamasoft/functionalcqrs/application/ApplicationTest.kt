@@ -5,9 +5,6 @@ import assertk.assertions.hasSize
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import com.gamasoft.functionalcqrs.readModel.*
-import com.gamasoft.functionalcqrs.readModel.ReadItem
-import com.gamasoft.functionalcqrs.readModel.ReadOrder
-import com.gamasoft.functionalcqrs.readModel.OrderDetail
 import com.gamasoft.functionalcqrs.writeModel.*
 import kotlinx.coroutines.experimental.runBlocking
 import org.junit.jupiter.api.BeforeEach
